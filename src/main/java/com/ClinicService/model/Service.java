@@ -3,8 +3,7 @@ package com.ClinicService.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,14 +12,16 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "service")
 public class Service {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SER_ID")
     private int id;
-    @Column
+    @Column(name = "SER_NAME")
     private String name;
-    @Column
+    @Column(name = "SER_TIME")
     private double time;
-    @Column
+    @Column(name = "SER_DATE")
     private Date date;
 }

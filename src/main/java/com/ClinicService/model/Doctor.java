@@ -3,8 +3,7 @@ package com.ClinicService.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -12,18 +11,19 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Docktor {
+@Table(name = "`doctor`")
+public class Doctor {
 
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "DOC_ID")
     private int id;
-    @Column
+    @Column(name = "DOC_NAME")
     private String name;
-    @Column
+    @Column(name = "LASTNAME")
     private String lastName;
-    @Column
+    @Column(name = "ID_USER")
     private int id_User;
-
 
 }

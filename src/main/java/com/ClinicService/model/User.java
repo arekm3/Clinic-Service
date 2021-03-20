@@ -4,8 +4,8 @@ package com.ClinicService.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -13,14 +13,16 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "user")
 public class User {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USR_ID")
     private int id;
-    @Column
+    @Column(name = "USR_NAME")
     private String userName;
-    @Column
+    @Column(name = "USR_PASSWORD")
     private String password;
     @Column
-    private String role;
+    private Set<Rol> roles;
 }
