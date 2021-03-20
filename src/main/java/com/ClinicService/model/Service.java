@@ -12,15 +12,12 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Visit {
-
+public class Service {
     @Id
     @Column
     private int id;
     @Column
-    private int id_Patient;
+    private String name;
     @Column
-    private int id_Doctor;
-    @Column
-    private int id_Service;
+    private double time;
 }
