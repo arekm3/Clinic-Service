@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.Date;
 
 @Entity
 @Data
@@ -20,4 +21,6 @@ public class Service {
     private String name;
     @Column
     private double time;
+    @Column
+    private Date date;
 }
