@@ -1,5 +1,9 @@
 package com.ClinicService.service;
 
+import com.ClinicService.model.Patient;
+
 public interface PatientService {
-    public void createVisit();
+    void createVisit();
+    void save(Patient patient);
+    Patient findByLogin(String login);
 }
