@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Docktor {
+public class Doctor {
 
 
     @Id
