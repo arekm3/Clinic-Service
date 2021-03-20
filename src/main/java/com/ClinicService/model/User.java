@@ -2,7 +2,6 @@ package com.ClinicService.model;
 
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,6 +14,7 @@ import java.util.Set;
 @Setter
 @Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USR_ID")
@@ -23,6 +23,7 @@ public class User {
     private String userName;
     @Column(name = "USR_PASSWORD")
     private String password;
-    @Column
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "USR_ROL_USR_ID"), inverseJoinColumns = @JoinColumn(name = "USR_ROL_RO_ID"))
     private Set<Rol> roles;
 }

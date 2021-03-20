@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "role")
-
 public class Rol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RO_ID")

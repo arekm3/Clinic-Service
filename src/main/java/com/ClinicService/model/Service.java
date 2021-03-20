@@ -1,7 +1,6 @@
 package com.ClinicService.model;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +13,7 @@ import java.util.Date;
 @Setter
 @Table(name = "service")
 public class Service {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SER_ID")

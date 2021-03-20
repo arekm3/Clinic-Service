@@ -1,8 +1,6 @@
 package com.ClinicService.model;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,9 +9,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "`doctor`")
+@Table(name = "doctor")
 public class Doctor {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +20,7 @@ public class Doctor {
     private String name;
     @Column(name = "LASTNAME")
     private String lastName;
-    @Column(name = "ID_USER")
-    private int id_User;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DOC_USR_ID", referencedColumnName = "USR_ID")
+    private User user;
 }

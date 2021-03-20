@@ -1,7 +1,6 @@
 package com.ClinicService.model;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
@@ -29,6 +28,6 @@ public class Patient {
     @Column(name = "PAT_GENDER")
     private Gender gender;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USR_PAT_ID", referencedColumnName = "PAT_ID")
-    private int id_User;
+    @JoinColumn(name = "PAT_USR_ID", referencedColumnName = "USR_ID")
+    private User user;
 }
