@@ -1,11 +1,11 @@
 package com.ClinicService.model;
 
+
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.util.Date;
 
 @Entity
 @Data
@@ -13,17 +13,14 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Visit {
-
+public class User {
     @Id
     @Column
     private int id;
     @Column
-    private int id_Patient;
+    private String userName;
     @Column
-    private int id_Doctor;
+    private String password;
     @Column
-    private int id_Service;
-    @Column
-    private Date date;
+    private String role;
 }

@@ -27,4 +27,6 @@ public class Patient {
     private String email;
     @Column
     private Gender gender;
+    @Column
+    private int id_User;
 }

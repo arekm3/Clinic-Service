@@ -22,6 +22,8 @@ public class Docktor {
     private String name;
     @Column
     private String lastName;
+    @Column
+    private int id_User;
 
 
 }
