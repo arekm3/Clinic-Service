@@ -10,8 +10,6 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "user")
 public class User {
 
@@ -25,5 +23,5 @@ public class User {
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "USR_ROL_USR_ID"), inverseJoinColumns = @JoinColumn(name = "USR_ROL_RO_ID"))
-    private Set<Rol> roles;
+    private Set<Role> roles;
 }

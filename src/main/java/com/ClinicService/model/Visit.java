@@ -3,14 +3,13 @@ package com.ClinicService.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "visit")
 public class Visit {
 
@@ -28,5 +27,5 @@ public class Visit {
     @JoinColumn(name = "VIS_SER_ID", referencedColumnName = "SER_ID")
     private Service service;
     @Column(name = "VIS_DATE")
-    private Date date;
+    private LocalDate date;
 }

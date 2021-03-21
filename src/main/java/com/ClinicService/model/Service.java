@@ -3,14 +3,13 @@ package com.ClinicService.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "service")
 public class Service {
 
@@ -23,5 +22,5 @@ public class Service {
     @Column(name = "SER_TIME")
     private double time;
     @Column(name = "SER_DATE")
-    private Date date;
+    private LocalDate date;
 }
