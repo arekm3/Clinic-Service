@@ -1,46 +1,47 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
 <head>
-    <meta charset="UTF-8"/>
-    <title>Spring Boot Thymeleaf Application - Bootstrap Autocomplete</title>
-
-    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <title>Spring Security Example </title>
+    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">Thymeleaf - Bootstrap Autocomplete</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <div class="container">
-    <h2 class="mt-5">Your place of birth: <strong th:text="${birthplace.state.label}" th:if="${birthplace.state != null}"></strong></h2>
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form th:action="@{/register}" th:object="${portalUser}" method="post">
+                <fieldset>
+                    <h1>Please provide account details</h1>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="Login" th:field="*{login}" required="true" autofocus="true"/>
+                        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}" class="text-danger"> Login Error</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="Email" required="true" th:field="*{email}"/>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"> Email Error</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="First Name" required="true" th:field="*{firstName}"/>
+                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"> First Name error</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="Last Name" required="true" th:field="*{lastName}"/>
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"> Last Name error</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control input-lg" placeholder="Password" required="true" th:field="*{password}"/>
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"> Password error</span>
+                    </div>
+                    <div class="form-group" >
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign Up"/>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
-    <a th:href="@{/}" class="btn btn-primary">Go back</a>
 </div>
 
 </body>
