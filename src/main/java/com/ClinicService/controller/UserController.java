@@ -36,21 +36,6 @@ public class UserController {
         return "redirect:/login?logout";
     }
 
-    @GetMapping("/register")
-    public String registerPage(Model model){
-        model.addAttribute("user", new User());
-        return "/register";
-    }
 
-    @PostMapping("/register")
-    public String register(@Valid User user, BindingResult result){
-        if (result.hasErrors()){
-            return "register";
-        }
-        else {
-            userService.save(user);
-            return "redirect:/login";
-        }
-    }
 
 }
