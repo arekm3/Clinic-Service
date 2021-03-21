@@ -15,18 +15,17 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping("patient/register")
-    public String registerPage(Model model){
+    @GetMapping("/patient/register")
+    public String registerPatientPage(Model model){
 
         model.addAttribute("patient", new Patient());
-        return "/register";
+        return "patient/register";
     }
 
-    @PostMapping("/register")
-
-    public String register(@Valid Patient patient, BindingResult result){
+    @PostMapping("/patient/register")
+    public String registerPatient(@Valid Patient patient, BindingResult result){
         if (result.hasErrors()){
-            return "register";
+            return "patient/register";
         }
         else {
             patientService.savePatient(patient);
