@@ -15,15 +15,14 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping("patient/register")
+    @GetMapping("/patient/register")
     public String registerPatientPage(Model model){
 
         model.addAttribute("patient", new Patient());
         return "patient/register";
     }
 
-    @PostMapping("patient/register")
-
+    @PostMapping("/patient/register")
     public String registerPatient(@Valid Patient patient, BindingResult result){
         if (result.hasErrors()){
             return "patient/register";

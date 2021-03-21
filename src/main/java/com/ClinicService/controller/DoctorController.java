@@ -15,13 +15,13 @@ public class DoctorController {
     @Autowired
     UserService userService;
 
-    @GetMapping("doctor/register")
+    @GetMapping("/doctor/register")
     public String registerDocPage(Model model) {
         model.addAttribute("doctor", new Doctor());
         return "doctor/register";
     }
 
-    @PostMapping("doctor/register")
+    @PostMapping("/doctor/register")
     public String registerDoc(@Valid Doctor doc, BindingResult result) {
         if (result.hasErrors()) {
             return "doctor/register";

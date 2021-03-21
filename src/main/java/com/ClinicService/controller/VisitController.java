@@ -15,13 +15,13 @@ public class VisitController {
     @Autowired
     VisitService visitService;
 
-    @GetMapping("patient/create_visit")
+    @GetMapping("/patient/create_visit")
     public String createVisitPage(Model model){
         model.addAttribute("visit", new Visit());
         return "home/success";
     }
 
-    @PostMapping("patient/create_visit")
+    @PostMapping("/patient/create_visit")
     public String createVisit(@Valid Visit visit, BindingResult result){
         if (result.hasErrors()){
             return "patient/create_visit";
