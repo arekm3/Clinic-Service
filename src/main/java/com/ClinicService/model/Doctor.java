@@ -18,6 +18,8 @@ public class Doctor {
     private String name;
     @Column(name = "LASTNAME")
     private String lastName;
+    @Column(name = "SPECIALIZATION")
+    private String specialization;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DOC_USR_ID", referencedColumnName = "USR_ID")
     private User user;
