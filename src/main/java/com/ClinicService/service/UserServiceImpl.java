@@ -1,7 +1,9 @@
 package com.ClinicService.service;
 
+import com.ClinicService.dto.DoctorDto;
 import com.ClinicService.model.Doctor;
 import com.ClinicService.model.Role;
+import com.ClinicService.model.User;
 import com.ClinicService.repository.DoctorRepository;
 import com.ClinicService.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +24,33 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    UserRepository userRepository;
 
 
     @Override
-    public void saveDoctor(Doctor user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName("USER"));
-        user.setRoles(roles);
-        doctorRepository.save(user);
+    public void saveDoctor(DoctorDto dto) {
+        Doctor doctor = toDoctor(dto);
+        User saved = userRepository.save(doctor.getUser());
+        doctor.setUser(saved);
+        doctorRepository.save(doctor);
+    }
+
+    private Doctor toDoctor(DoctorDto dto) {
+        return Doctor.builder()
+                .name(dto.getName())
+                .lastName(dto.getLastName())
+                .specialization(dto.getSpecialization())
+                .user(createUser(dto.getName(), dto.getPassword()))
+                .build();
+    }
+
+    private User createUser(String name, String password) {
+        return new User(null, name, passwordEncoder.encode(password), Set.of(roleRepository.findByName("nazwaRoliDoktora")));
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+        return userRepository.findById(s).orElseThrow(() -> new UsernameNotFoundException(""));
     }
 }

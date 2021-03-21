@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "doctor")
 @Getter
 @Setter
+@Builder
 public class Doctor  {
 
     @Id
