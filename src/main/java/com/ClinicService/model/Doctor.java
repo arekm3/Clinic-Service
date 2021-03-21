@@ -7,14 +7,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "doctor")
-@Getter
-@Setter
+@Data
+@Builder
 public class Doctor  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DOC_ID")
-    private int id;
+    private Integer id;
     @Column(name = "DOC_NAME")
     private String name;
     @Column(name = "LASTNAME")

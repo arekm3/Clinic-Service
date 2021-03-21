@@ -1,5 +1,5 @@
 package com.ClinicService.model;
 
-public enum Gender {
+public enum EGender {
     M, F
 }

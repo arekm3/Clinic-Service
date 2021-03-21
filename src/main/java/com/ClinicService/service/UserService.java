@@ -1,10 +1,12 @@
 package com.ClinicService.service;
 
-import com.ClinicService.model.Doctor;
-import com.ClinicService.model.User;
+import com.ClinicService.dto.DoctorDto;
+import com.ClinicService.dto.PatientDto;
+
 
 
 public interface UserService {
-    void saveDoctor(Doctor user);
+    void saveDoctor(DoctorDto doctorDto);
+    void savePatient(PatientDto patientDto);
 
 }

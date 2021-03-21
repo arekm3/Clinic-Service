@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class Patient {
     @Column(name = "PAT_EMAIL")
     private String email;
     @Column(name = "PAT_GENDER")
-    private Gender gender;
+    private EGender gender;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAT_USR_ID", referencedColumnName = "USR_ID")
     private User user;

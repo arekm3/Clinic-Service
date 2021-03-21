@@ -1,9 +1,15 @@
 package com.ClinicService.service;
 
+import com.ClinicService.dto.DoctorDto;
+import com.ClinicService.dto.PatientDto;
 import com.ClinicService.model.Doctor;
+import com.ClinicService.model.Patient;
 import com.ClinicService.model.Role;
+import com.ClinicService.model.User;
 import com.ClinicService.repository.DoctorRepository;
+import com.ClinicService.repository.PatientRepository;
 import com.ClinicService.repository.RoleRepository;
+import com.ClinicService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,20 +27,55 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     PasswordEncoder passwordEncoder;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    PatientRepository patientRepository;
 
 
 
     @Override
-    public void saveDoctor(Doctor user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName("USER"));
-        user.setRoles(roles);
-        doctorRepository.save(user);
+    public void saveDoctor(DoctorDto doctorDto) {
+        Doctor doctor = toDoctor(doctorDto);
+        User saved = userRepository.save(doctor.getUser());
+        doctor.setUser(saved);
+        doctorRepository.save(doctor);
+    }
+
+    @Override
+    public void savePatient(PatientDto patientDto) {
+        Patient patient = toPatient(patientDto);
+        User saved = userRepository.save(patient.getUser());
+        patient.setUser(saved);
+     patientRepository.save(patient);
+    }
+
+    private Patient toPatient(PatientDto patientDto) {
+        return Patient.builder()
+                .name(patientDto.getName())
+                .lastName(patientDto.getLastName())
+                .address(patientDto.getAddress())
+                .email(patientDto.getEmail())
+                .gender(patientDto.getGender())
+                .user(createUser(patientDto.getName(), patientDto.getPassword(),Set.of(roleRepository.findByName("user"))))
+                .build();
+    }
+
+    private Doctor toDoctor(DoctorDto doctorDto) {
+        return Doctor.builder()
+                .name(doctorDto.getName())
+                .lastName(doctorDto.getLastName())
+                .specialization(doctorDto.getSpecialization())
+                .user(createUser(doctorDto.getName(), doctorDto.getPassword(),Set.of(roleRepository.findByName("admin"))))
+                .build();
+    }
+
+    private User createUser(String name, String password, Set<Role> role) {
+        return new User(null, name, passwordEncoder.encode(password), role);
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+        return userRepository.findByUserName(s).orElseThrow(()-> new UsernameNotFoundException("Couldn't find user by user name"));
     }
 }

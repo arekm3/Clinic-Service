@@ -1,5 +1,6 @@
 package com.ClinicService.controller;
 
+import com.ClinicService.dto.DoctorDto;
 import com.ClinicService.model.Doctor;
 import com.ClinicService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class DoctorController {
     }
 
     @PostMapping("/doctor/register")
-    public String registerDoc(@Valid Doctor doc, BindingResult result) {
+    public String registerDoc(@Valid DoctorDto doc, BindingResult result) {
         if (result.hasErrors()) {
             return "doctor/register";
         } else {
