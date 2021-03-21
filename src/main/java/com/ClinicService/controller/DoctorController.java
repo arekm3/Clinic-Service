@@ -16,15 +16,15 @@ public class DoctorController {
     UserService userService;
 
     @GetMapping("doctor/register")
-    public String registerPage(Model model) {
+    public String registerDocPage(Model model) {
         model.addAttribute("doctor", new Doctor());
-        return "/register";
+        return "doctor/register";
     }
 
-    @PostMapping("/register")
-    public String register(@Valid Doctor doc, BindingResult result) {
+    @PostMapping("doctor/register")
+    public String registerDoc(@Valid Doctor doc, BindingResult result) {
         if (result.hasErrors()) {
-            return "register";
+            return "doctor/register";
         } else {
             userService.saveDoctor(doc);
             return "redirect:/login";
