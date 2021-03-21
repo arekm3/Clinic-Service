@@ -9,7 +9,7 @@ spring:
     show-sql: true
     hibernate:
       dialect: org.hibernate.dialect.MySQL5Dialect
-      dll-auto: create
+      dll-auto: verify
     properties:
       hibernate:
         format_sql: true

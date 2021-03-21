@@ -25,7 +25,7 @@ public class Patient {
     @Column(name = "PAT_EMAIL")
     private String email;
     @Column(name = "PAT_GENDER")
-    private EGender gender;
+    private String gender;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAT_USR_ID", referencedColumnName = "USR_ID")
     private User user;
