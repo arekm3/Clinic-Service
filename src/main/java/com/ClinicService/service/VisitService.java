@@ -1,5 +1,8 @@
 package com.ClinicService.service;
 
-public interface VisitService {
+import com.ClinicService.model.Visit;
 
+public interface VisitService {
+    void createVisit();
+    void displayVisitDetails(Visit visit);
 }
