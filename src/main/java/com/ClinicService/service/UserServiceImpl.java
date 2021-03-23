@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findByUserName(s).orElseThrow(()-> new UsernameNotFoundException("Couldn't find user by user name"));
     }
 
-    /*public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("test"));
-    }*/
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().encode("test"));
+//    }
 }
