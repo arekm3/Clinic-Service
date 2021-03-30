@@ -35,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**",
-                        "/login",
-                        "/register").permitAll()
+                        "/home").permitAll()
                 .antMatchers("/").hasAuthority("USER")
                 .antMatchers("/doctor/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()

@@ -3,7 +3,6 @@
 >
 <head>
     <title>Spring Security Example </title>
-    <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
 
@@ -11,30 +10,38 @@
 <div class="container">
     <div class="row" style="margin-top:20px">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form th:action="@{/register}" th:object="${portalUser}" method="post">
+            <form th:action="@{/patient/register}" th:object="${patient}" method="post">
                 <fieldset>
                     <h1>Please provide account details</h1>
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Login" th:field="*{login}" required="true" autofocus="true"/>
-                        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}" class="text-danger"> Login Error</span>
+                        <input type="text" class="form-control input-lg" placeholder="Name" th:field="*{name}" required="true" autofocus="true"/>
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Name Error</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="LastName" th:field="*{lastName}" required="true"/>
+                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger">Lastname Error</span>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control input-lg" placeholder="Email" required="true" th:field="*{email}"/>
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"> Email Error</span>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="First Name" required="true" th:field="*{firstName}"/>
-                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"> First Name error</span>
+                        <input type="text" class="form-control input-lg" placeholder="Address" th:field="*{address}" required="true"/>
+                        <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger">Address Error</span>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Last Name" required="true" th:field="*{lastName}"/>
-                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"> Last Name error</span>
+                        <input type="text" class="form-control input-lg" placeholder="Gender" th:field="*{gender}" required="true"/>
+                        <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="text-danger"> Gender Error</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="UserName" th:field="*{userName}" required="true"/>
+                        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"> User Name Error</span>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control input-lg" placeholder="Password" required="true" th:field="*{password}"/>
                         <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"> Password error</span>
                     </div>
-                    <div class="form-group" >
+                    <div class="form-group">
                         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign Up"/>
                     </div>
                 </fieldset>
