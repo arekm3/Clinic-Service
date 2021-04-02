@@ -24,6 +24,8 @@ public class Patient {
     private String address;
     @Column(name = "PAT_EMAIL")
     private String email;
+    @Column(name = "PAT_PHONE")
+    private String phone;
     @Column(name = "PAT_GENDER")
     private String gender;
     @ManyToOne(fetch = FetchType.LAZY)

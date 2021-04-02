@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
+
     @Autowired
     DoctorRepository doctorRepository;
     @Autowired
@@ -32,8 +33,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     UserRepository userRepository;
     @Autowired
     PatientRepository patientRepository;
-
-
 
     @Override
     public void saveDoctor(DoctorDto doctorDto) {
@@ -58,6 +57,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .address(patientDto.getAddress())
                 .email(patientDto.getEmail())
                 .gender(patientDto.getGender())
+                .phone(patientDto.getPhone())
                 .user(createUser(patientDto.getUserName(), patientDto.getPassword(),Set.of(roleRepository.findByName("user"))))
                 .build();
     }

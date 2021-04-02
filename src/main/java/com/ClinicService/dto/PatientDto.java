@@ -10,6 +10,7 @@ public class PatientDto {
     private String email;
     private String address;
     private String gender;
+    private String phone;
     private String userName;
     private String password;
 }
