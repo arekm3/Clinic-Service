@@ -1,7 +1,9 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
-
+.navbar-nav {
+  font-size: 1.2rem;
+}
 body {
   padding-top: 3rem;
   padding-bottom: 3rem;
