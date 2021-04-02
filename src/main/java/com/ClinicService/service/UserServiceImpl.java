@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .address(patientDto.getAddress())
                 .email(patientDto.getEmail())
                 .gender(patientDto.getGender())
-                .user(createUser(patientDto.getName(), patientDto.getPassword(),Set.of(roleRepository.findByName("user"))))
+                .user(createUser(patientDto.getUserName(), patientDto.getPassword(),Set.of(roleRepository.findByName("user"))))
                 .build();
     }
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .name(doctorDto.getName())
                 .lastName(doctorDto.getLastName())
                 .specialization(doctorDto.getSpecialization())
-                .user(createUser(doctorDto.getName(), doctorDto.getPassword(),Set.of(roleRepository.findByName("admin"))))
+                .user(createUser(doctorDto.getUserName(), doctorDto.getPassword(),Set.of(roleRepository.findByName("admin"))))
                 .build();
     }
 
