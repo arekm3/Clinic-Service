@@ -4,6 +4,7 @@ import com.ClinicService.dto.DoctorDto;
 import com.ClinicService.model.Doctor;
 import com.ClinicService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+@Controller
 public class DoctorController {
 
+    private final UserService userService;
+
     @Autowired
-    UserService userService;
+    public DoctorController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/doctor/register")
     public String registerDocPage(Model model) {

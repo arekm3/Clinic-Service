@@ -1,10 +1,7 @@
 package com.ClinicService.controller;
 
 import com.ClinicService.dto.PatientDto;
-import com.ClinicService.model.Patient;
-import com.ClinicService.service.PatientService;
 import com.ClinicService.service.UserService;
-import com.ClinicService.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,24 +14,27 @@ import javax.validation.Valid;
 @Controller
 public class PatientController {
 
+    private final UserService userService;
+
     @Autowired
-    UserService userService;
+    public PatientController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/patient/register")
-    public String registerPatientPage(Model model){
+    public String registerPatientPage(Model model) {
 
         model.addAttribute("patient", new PatientDto());
         return "registerPatient";
     }
 
     @PostMapping("/patient/register")
-    public String registerPatient(@Valid PatientDto patient, BindingResult result){
-        if (result.hasErrors()){
+    public String registerPatient(@Valid PatientDto patient, BindingResult result) {
+        if (result.hasErrors()) {
             return "registerPatient";
         }
-        else {
-            userService.savePatient(patient);
-            return "redirect:/login";
-        }
+
+        userService.savePatient(patient);
+        return "redirect:/login";
     }
 }

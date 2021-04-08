@@ -14,25 +14,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Set;
+
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private final DoctorRepository doctorRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final PatientRepository patientRepository;
+
     @Autowired
-    DoctorRepository doctorRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
-    @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    PatientRepository patientRepository;
+    public UserServiceImpl(DoctorRepository doctorRepository, PasswordEncoder passwordEncoder,
+                           RoleRepository roleRepository, UserRepository userRepository,
+                           PatientRepository patientRepository) {
+        this.doctorRepository = doctorRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.patientRepository = patientRepository;
+    }
 
     @Override
     public void saveDoctor(DoctorDto doctorDto) {
@@ -47,7 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Patient patient = toPatient(patientDto);
         User saved = userRepository.save(patient.getUser());
         patient.setUser(saved);
-     patientRepository.save(patient);
+        patientRepository.save(patient);
     }
 
     private Patient toPatient(PatientDto patientDto) {
@@ -58,7 +63,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .email(patientDto.getEmail())
                 .gender(patientDto.getGender())
                 .phone(patientDto.getPhone())
-                .user(createUser(patientDto.getUserName(), patientDto.getPassword(),Set.of(roleRepository.findByName("user"))))
+                .user(createUser(patientDto.getUserName(), patientDto.getPassword(), Set.of(roleRepository.findByName("user"))))
                 .build();
     }
 
@@ -67,7 +72,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .name(doctorDto.getName())
                 .lastName(doctorDto.getLastName())
                 .specialization(doctorDto.getSpecialization())
-                .user(createUser(doctorDto.getUserName(), doctorDto.getPassword(),Set.of(roleRepository.findByName("admin"))))
+                .user(createUser(doctorDto.getUserName(), doctorDto.getPassword(), Set.of(roleRepository.findByName("admin"))))
                 .build();
     }
 
@@ -77,10 +82,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userRepository.findByUserName(s).orElseThrow(()-> new UsernameNotFoundException("Couldn't find user by user name"));
+        return userRepository.findByUserName(s).orElseThrow(() -> new UsernameNotFoundException("Couldn't find user by user name"));
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(new BCryptPasswordEncoder().encode("test"));
-//    }
+/*    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("test"));
+    }*/
 }
