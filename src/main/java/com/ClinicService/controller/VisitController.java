@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-
 @Controller
 public class VisitController {
 
@@ -21,16 +20,16 @@ public class VisitController {
         this.visitService = visitService;
     }
 
-    @GetMapping("/patient/create_visit")
+    @GetMapping("/patient/visit/create")
     public String createVisitPage(Model model) {
         model.addAttribute("visit", new Visit());
-        return "home/success";
+        return "visitRegister";
     }
 
-    @PostMapping("/patient/create_visit")
+    @PostMapping("/patient/visit/create")
     public String createVisit(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
-            return "patient/create_visit";
+            return "patient/visit/create";
         }
 
         visitService.createVisit(visit);
