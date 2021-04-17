@@ -37,4 +37,7 @@ public class Visit {
     private Service service;
     @Column(name = "VIS_DATE")
     private LocalDate date;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "VIS_VSS_ID", referencedColumnName = "VSS_ID")
+    private VisitStatus visitStatus;
 }
