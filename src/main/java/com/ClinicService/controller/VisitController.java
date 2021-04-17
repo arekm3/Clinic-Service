@@ -1,5 +1,6 @@
 package com.ClinicService.controller;
 
+import com.ClinicService.dto.VisitDto;
 import com.ClinicService.model.Visit;
 import com.ClinicService.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.List;
+
 @Controller
 public class VisitController {
 
@@ -26,15 +32,13 @@ public class VisitController {
         return "visitRegister";
     }
 
-    @PostMapping("/patient/visit/create")
-    public String createVisit(@Valid Visit visit, BindingResult result) {
-        if (result.hasErrors()) {
-            return "patient/visit/create";
-        }
-
-        visitService.createVisit(visit);
-        return "redirect:/login";
+    @RequestMapping("/patient/visit/create")
+    public String visitsList(@RequestParam("id") int id, @RequestParam("date") LocalDate date, Model model){
+        List<VisitDto> visitList = visitService.getAvailableVisit(date,id);
+        model.addAttribute("visitList", visitList);
+        return "visit";
     }
+
 
     @GetMapping("/patient/visit")
     public String visitPage() {

@@ -23,7 +23,6 @@ public class PatientController {
 
     @GetMapping("/patient/register")
     public String registerPatientPage(Model model) {
-
         model.addAttribute("patient", new PatientDto());
         return "registerPatient";
     }

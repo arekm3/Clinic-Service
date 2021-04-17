@@ -28,6 +28,8 @@ public class DoctorController {
         return "doctor/register";
     }
 
+
+
     @PostMapping("/doctor/register")
     public String registerDoc(@Valid DoctorDto doc, BindingResult result) {
         if (result.hasErrors()) {

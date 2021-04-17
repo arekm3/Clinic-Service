@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -85,7 +86,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findByUserName(s).orElseThrow(() -> new UsernameNotFoundException("Couldn't find user by user name"));
     }
 
-/*    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("test"));
-    }*/
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().encode("test"));
+//    }
 }
