@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -36,8 +37,5 @@ public class Visit {
     @JoinColumn(name = "VIS_SER_ID", referencedColumnName = "SER_ID")
     private Service service;
     @Column(name = "VIS_DATE")
-    private LocalDate date;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VIS_VSS_ID", referencedColumnName = "VSS_ID")
-    private VisitStatus visitStatus;
+    private LocalDateTime date;
 }
