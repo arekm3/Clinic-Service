@@ -35,4 +35,24 @@ public class VisitController {
         visitService.createVisit(visit);
         return "redirect:/login";
     }
+
+    @GetMapping("/patient/visit")
+    public String visitPage() {
+        return "visit";
+    }
+
+    @PostMapping("/patient/visit")
+    public String visit(@Valid Visit visit, BindingResult result) {
+        if (result.hasErrors()) {
+            return "patient/visit";
+        }
+
+        visitService.createVisit(visit);
+        return "redirect:/login";
+    }
+
+    @GetMapping("/patient/contact")
+    public String contactPage() {
+        return "contact";
+    }
 }
