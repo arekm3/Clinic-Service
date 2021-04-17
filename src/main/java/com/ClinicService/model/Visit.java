@@ -38,4 +38,5 @@ public class Visit {
     private Service service;
     @Column(name = "VIS_DATE")
     private LocalDateTime date;
+
 }
