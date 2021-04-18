@@ -73,6 +73,7 @@ public class VisitController {
     @PostMapping("/register/visit/{id}")
     public String editPage(@PathVariable(value = "id") int id){
 
+
         return "post";
     }
 
