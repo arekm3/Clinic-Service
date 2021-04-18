@@ -73,10 +73,8 @@ public class VisitController {
 
     @GetMapping("/register/visit/{id}")
     public String editPage(@PathVariable(value = "id") int id, Principal principal){
-        visitService.addPatientVisit(id, principal.getName());
-
-
-        return "post";
+        visitService.addPatientToVisit(id,principal.getName());
+        return "home";
     }
 
     @GetMapping("/patient/contact")
