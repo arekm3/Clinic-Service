@@ -3,6 +3,7 @@ package com.ClinicService.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,7 @@ public class Visit {
     @JoinColumn(name = "VIS_SER_ID", referencedColumnName = "SER_ID")
     private Service service;
     @Column(name = "VIS_DATE")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime date;
 
 }

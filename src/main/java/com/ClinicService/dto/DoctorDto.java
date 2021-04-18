@@ -10,4 +10,5 @@ public class DoctorDto {
     private String specialization;
     private String userName;
     private String password;
+
 }
