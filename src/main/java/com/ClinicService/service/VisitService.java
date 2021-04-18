@@ -1,6 +1,7 @@
 package com.ClinicService.service;
 
 
+import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
 import com.ClinicService.model.Visit;
 
@@ -12,6 +13,7 @@ public interface VisitService {
     void displayVisitDetails(Visit visit);
     List<VisitInfoDto> getAvailableVisit(LocalDate dateTime, String lastName);
     void addPatientToVisit(int id, String name);
+    void saveVisit(VisitFullDto visitFullDto);
 
 
 }

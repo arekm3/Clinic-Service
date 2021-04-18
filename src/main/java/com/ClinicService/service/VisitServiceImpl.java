@@ -1,6 +1,7 @@
 package com.ClinicService.service;
 
 
+import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
 import com.ClinicService.model.Patient;
 import com.ClinicService.model.Visit;
@@ -48,6 +49,17 @@ public class VisitServiceImpl implements VisitService{
                 visitRepository.save(visit1);
             }
         });
+    }
+
+    @Override
+    public void saveVisit(VisitFullDto visitFullDto) {
+        VisitFullDto visit = toVisit(visitFullDto);
+       // Visit saved = visitRepository.save(visit);
+    }
+    private VisitFullDto toVisit (VisitFullDto visitFullDto){
+        return VisitFullDto.builder()
+                .date(visitFullDto.getDate())
+                .doctor(visitFullDto.getDoctor()).build();
     }
 
 

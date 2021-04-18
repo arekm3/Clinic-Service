@@ -61,15 +61,15 @@ public class VisitController {
         return "visit";
     }
 
-    @PostMapping("/patient/visit")
-    public String visit(@Valid Visit visit, BindingResult result) {
-        if (result.hasErrors()) {
-            return "patient/visit";
-        }
-
-        visitService.createVisit(visit);
-        return "redirect:/login";
-    }
+//    @PostMapping("/patient/visit")
+//    public String visit(@Valid Visit visit, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "patient/visit";
+//        }
+//
+//        visitService.createVisit(visit);
+//        return "redirect:/login";
+//    }
 
     @GetMapping("/register/visit/{id}")
     public String editPage(@PathVariable(value = "id") int id, Principal principal){

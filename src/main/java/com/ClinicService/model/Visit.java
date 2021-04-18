@@ -1,6 +1,7 @@
 package com.ClinicService.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,8 +17,11 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,4 +45,13 @@ public class Visit {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime date;
 
-}
+//    public static void main(String[] args) {
+//        List<LocalDateTime> lista = new ArrayList<>();
+//        LocalDateTime start = LocalDateTime.of(2021,4,21,16,30);
+//        for(int i = 0; i<10;i++){
+//            lista.add(start);
+//            start=start.plusMinutes(30);
+//        }
+//    }
+    }
+
