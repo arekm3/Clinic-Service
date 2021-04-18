@@ -8,10 +8,10 @@
           crossorigin="anonymous">
 </head>
 <form th:action="@{/patient/visit/create/av}" th:object="${visit}">
-    <select th:field="*{id}" class="form-select" aria-label="Default select example">
-        <option th:value="1">Nowak</option>
-        <option th:value="2">Kowalski</option>
-        <option th:value="3">Martyniuk</option>
+    <select th:field="*{doctor.lastName}" class="form-select" aria-label="Default select example">
+        <option th:value="Nowak">Nowak</option>
+        <option th:value="Kowalski">Kowalski</option>
+        <option th:value="Martyniuk">Martyniuk</option>
     </select>
 
 <!--    <div class="container py-5">-->

@@ -1,6 +1,7 @@
 package com.ClinicService.service;
 
-import com.ClinicService.dto.VisitDto;
+
+import com.ClinicService.dto.visitdto.VisitInfoDto;
 import com.ClinicService.model.Visit;
 import com.ClinicService.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,9 +26,10 @@ public class VisitServiceImpl implements VisitService{
     public void displayVisitDetails(Visit visit) {
     }
     @Override
-    public List<VisitDto> getAvailableVisit(LocalDate dateTime, int id) {
-        return visitRepository.findVisitByDoctor_IdAndDateBetween(id,dateTime.atStartOfDay(),dateTime.plusDays(1).atStartOfDay()).stream()
-                .map(visit -> modelMapper.map(visit, VisitDto.class))
+    public List<VisitInfoDto> getAvailableVisit(LocalDate dateTime, String lastName) {
+        List<Visit> visitByDoctor_lastNameAndDateBetween = visitRepository.findVisitByDoctor_LastNameAndDateBetween(lastName, dateTime.atStartOfDay(), dateTime.plusDays(1).atStartOfDay());
+        return visitByDoctor_lastNameAndDateBetween.stream()
+                .map(visit -> modelMapper.map(visit, VisitInfoDto.class))
                 .collect(Collectors.toList());
     }
 }

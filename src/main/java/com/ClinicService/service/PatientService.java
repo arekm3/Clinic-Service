@@ -5,4 +5,5 @@ import com.ClinicService.model.Patient;
 public interface PatientService {
 
     void displayPatientDetails(Patient patient);
+    void getPatientById(int id);
 }

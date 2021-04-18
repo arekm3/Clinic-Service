@@ -7,10 +7,11 @@
 </head>
 <body>
     <tr th:if="${visit.getPatient() == null}" th:each="visit: ${visits}" th:object="${visit}">
-        <td th:text="${visit.getId()}"/><br>
+        <td th:text="${visit.getDoctor()}"/><br>
         <td th:text="${visit.getDate()}"/><br>
+        <td><a th:href="@{/register/visit/{id}(id=${visit.getId()})}">Rejestruj</a></td>
         <p>---------</p>
     </tr>
-<p ></p>
+
 </body>
 </html>

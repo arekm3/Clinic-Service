@@ -1,4 +1,4 @@
-package com.ClinicService.dto;
+package com.ClinicService.dto.patientdto;
 
 import lombok.Data;
 

@@ -31,7 +31,7 @@ public class Visit {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "VIS_PAT_ID", referencedColumnName = "PAT_ID")
     private Patient patient;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "VIS_DOC_ID", referencedColumnName = "DOC_ID")
     private Doctor doctor;
     @ManyToOne(fetch = FetchType.LAZY)

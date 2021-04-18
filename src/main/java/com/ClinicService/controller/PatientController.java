@@ -1,6 +1,6 @@
 package com.ClinicService.controller;
 
-import com.ClinicService.dto.PatientDto;
+import com.ClinicService.dto.patientdto.PatientDto;
 import com.ClinicService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

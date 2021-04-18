@@ -1,7 +1,7 @@
 package com.ClinicService.service;
 
-import com.ClinicService.dto.DoctorDto;
-import com.ClinicService.dto.PatientDto;
+import com.ClinicService.dto.doctordto.DoctorFullDto;
+import com.ClinicService.dto.patientdto.PatientDto;
 import com.ClinicService.model.Doctor;
 import com.ClinicService.model.Patient;
 import com.ClinicService.model.Role;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +40,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void saveDoctor(DoctorDto doctorDto) {
+    public void saveDoctor(DoctorFullDto doctorDto) {
         Doctor doctor = toDoctor(doctorDto);
         User saved = userRepository.save(doctor.getUser());
         doctor.setUser(saved);
@@ -56,6 +55,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         patientRepository.save(patient);
     }
 
+    @Override
+    public void getUserById(int id) {
+        userRepository.getUserById(id);
+    }
+
     private Patient toPatient(PatientDto patientDto) {
         return Patient.builder()
                 .name(patientDto.getName())
@@ -68,7 +72,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .build();
     }
 
-    private Doctor toDoctor(DoctorDto doctorDto) {
+    private Doctor toDoctor(DoctorFullDto doctorDto) {
         return Doctor.builder()
                 .name(doctorDto.getName())
                 .lastName(doctorDto.getLastName())
