@@ -32,4 +32,9 @@ public class VisitServiceImpl implements VisitService{
                 .map(visit -> modelMapper.map(visit, VisitInfoDto.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void addPatientVisit(int id, String name) {
+
+    }
 }

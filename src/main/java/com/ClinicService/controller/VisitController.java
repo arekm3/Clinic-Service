@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -70,8 +71,9 @@ public class VisitController {
         return "redirect:/login";
     }
 
-    @PostMapping("/register/visit/{id}")
-    public String editPage(@PathVariable(value = "id") int id){
+    @GetMapping("/register/visit/{id}")
+    public String editPage(@PathVariable(value = "id") int id, Principal principal){
+        visitService.addPatientVisit(id, principal.getName());
 
 
         return "post";

@@ -11,4 +11,5 @@ public interface VisitService {
     void createVisit(Visit visit);
     void displayVisitDetails(Visit visit);
     List<VisitInfoDto> getAvailableVisit(LocalDate dateTime, String lastName);
+    void addPatientVisit(int id, String name);
 }

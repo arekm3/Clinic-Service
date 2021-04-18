@@ -11,10 +11,10 @@ import java.security.Principal;
 @Controller
 public class GetUserWithHTTPServletRequestController {
 
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
     public String currentUserNameSimple(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         return principal.getName();
-    }
+    }*/
 }
