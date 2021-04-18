@@ -1,8 +1,10 @@
 package com.ClinicService.service;
 
 
+import com.ClinicService.dto.doctordto.DoctorFullDto;
 import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
+import com.ClinicService.model.Doctor;
 import com.ClinicService.model.Patient;
 import com.ClinicService.model.Visit;
 import com.ClinicService.repository.PatientRepository;
@@ -53,13 +55,19 @@ public class VisitServiceImpl implements VisitService{
 
     @Override
     public void saveVisit(VisitFullDto visitFullDto) {
-        VisitFullDto visit = toVisit(visitFullDto);
-       // Visit saved = visitRepository.save(visit);
+        Visit visit = toVisit(visitFullDto);
+        Visit saved = visitRepository.save(visit);
     }
-    private VisitFullDto toVisit (VisitFullDto visitFullDto){
-        return VisitFullDto.builder()
+    private Visit toVisit (VisitFullDto visitFullDto){
+        return Visit.builder()
                 .date(visitFullDto.getDate())
-                .doctor(visitFullDto.getDoctor()).build();
+                .doctor(toDoctor(visitFullDto.getDoctorId()))
+                .patient(null)
+                .service(null).build();
+    }
+    private Doctor toDoctor(int id){
+        return Doctor.builder()
+                .id(id).build();
     }
 
 

@@ -1,5 +1,7 @@
 package com.ClinicService.controller;
 
+import com.ClinicService.dto.patientdto.PatientDto;
+import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
 import com.ClinicService.model.Visit;
 import com.ClinicService.service.PatientService;
@@ -82,4 +84,19 @@ public class VisitController {
         return "contact";
     }
 
+    @GetMapping("/visit/register")
+    public String registerPatientPage(Model model) {
+        model.addAttribute("visit", new VisitFullDto());
+        return "registerVisit";
+    }
+
+    @PostMapping("/visit/register")
+    public String registerPatient(@Valid VisitFullDto visit, BindingResult result) {
+        if (result.hasErrors()) {
+            return "registerVisit";
+        }
+
+        visitService.saveVisit(visit);
+        return "redirect:/login";
+    }
 }
