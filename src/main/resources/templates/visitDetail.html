@@ -1,13 +1,17 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <p>Lista wizyt</p>
 </head>
 <body>
 <tr th:object="${visit}">
   <td th:text="${visit}"/><br>
+
+  <form th:action="@{/doctor/visit/display/{id}(id=${visit.getId()})}" th:object="${visit}" method="post">
+    <input type="text" th:field="${visit.description}">
+    <button type="submit">Zakończ rejestracje</button>
+  </form>
 </tr>
 
 </body>

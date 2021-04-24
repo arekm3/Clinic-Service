@@ -79,9 +79,21 @@ public class VisitServiceImpl implements VisitService{
     public VisitDisplayInfo displayVisit(int id) {
         return visitRepository.findById(id).map(this::visitToDisplay).orElseThrow();
     }
+
+    @Override
+    public void updateDescription(int id, String description) {
+        Optional<Visit> visit = visitRepository.findById(id);
+         visit.ifPresent(visit1 -> {
+             visit1.setDescription(description);
+             visitRepository.save(visit1);
+         });
+    }
+
     private VisitDisplayInfo visitToDisplay(Visit visit){
         return VisitDisplayInfo.builder()
                 .patient(patientToInfo(visit.getPatient()))
+                .id(visit.getId())
+                .description(visit.getDescription())
                 .build();
     }
 

@@ -44,15 +44,8 @@ public class Visit {
     @Column(name = "VIS_DATE")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime date;
+    @Column(name="VIS_DESC")
+    private String description;
 
-
-//    public static void main(String[] args) {
-//        List<LocalDateTime> lista = new ArrayList<>();
-//        LocalDateTime start = LocalDateTime.of(2021,4,21,16,30);
-//        for(int i = 0; i<10;i++){
-//            lista.add(start);
-//            start=start.plusMinutes(30);
-//        }
-//    }
     }
 
