@@ -36,10 +36,16 @@ public class VisitController {
     public String createVisitPage(Model model) {
         model.addAttribute("visit", new VisitInfoDto());
         return "visitRegister";
-
     }
 
-//    @PostMapping("/patient/visit/create")
+    @GetMapping("/patient/visit/create/av")
+    public String visitsList(@RequestParam("doctor.lastName") String lastName, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Model model) {
+        List<VisitInfoDto> visitList = visitService.getAvailableVisit(date, lastName);
+        model.addAttribute("visits", visitList);
+        return "visit";
+    }
+
+    //    @PostMapping("/patient/visit/create")
 //    public String createVisit(@Valid Visit visit, BindingResult result) {
 //        if (result.hasErrors()) {
 //            return "patient/visit/create";
@@ -49,11 +55,22 @@ public class VisitController {
 //        return "redirect:/visit";
 //    }
 
-    @GetMapping("/patient/visit/create/av")
-    public String visitsList(@RequestParam("doctor.lastName") String lastName, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Model model){
-        List<VisitInfoDto> visitList = visitService.getAvailableVisit(date,lastName);
+    @GetMapping("/doctor/visit/display")
+    public String findReservedVisits(Model model) {
+        model.addAttribute("visit", new VisitInfoDto());
+        return "visitDisplayForm";
+    }
+    @GetMapping("/doctor/visit/display/my")
+    public String displayReservedVisits(@RequestParam("doctor.lastName") String lastName, @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Model model) {
+        List<VisitInfoDto> visitList = visitService.displayReservedVisit(date, lastName);
         model.addAttribute("visits", visitList);
-        return "visit";
+        return "reservedVisit";
+    }
+
+    @GetMapping("/doctor/visit/display/{id}")
+    public String displayVisit(@PathVariable(value = "id") int id, Model model) {
+        model.addAttribute("visit",visitService.displayVisit(id));
+        return "visitDetail";
     }
 
     @GetMapping("/patient/visit")
@@ -63,10 +80,11 @@ public class VisitController {
 
 
     @GetMapping("/register/visit/{id}")
-    public String editPage(@PathVariable(value = "id") int id, Principal principal){
-        visitService.addPatientToVisit(id,principal.getName());
+    public String editPage(@PathVariable(value = "id") int id, Principal principal) {
+        visitService.addPatientToVisit(id, principal.getName());
         return "home";
     }
+
 
     @GetMapping("/patient/contact")
     public String contactPage() {
@@ -89,18 +107,18 @@ public class VisitController {
         return "redirect:/login";
     }
 
-    @GetMapping ("/doctor/visit/create")
-    public String epmptyVisitPage(Model model){
-        model.addAttribute("creator",new CreatorVisitDto());
+    @GetMapping("/doctor/visit/create")
+    public String epmptyVisitPage(Model model) {
+        model.addAttribute("creator", new CreatorVisitDto());
         return "emptyVisit";
     }
 
     @PostMapping("/doctor/visit/create")
-    public String addEmptyVisits(@Valid CreatorVisitDto creator, Principal principal, BindingResult bindingResult){
+    public String addEmptyVisits(@Valid CreatorVisitDto creator, Principal principal, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "emptyVisit";
         }
-        visitService.createDataVisit(creator,principal.getName());
+        visitService.createDataVisit(creator, principal.getName());
         return "home";
     }
 
