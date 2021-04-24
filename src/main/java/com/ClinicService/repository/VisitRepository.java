@@ -10,5 +10,4 @@ public interface VisitRepository extends JpaRepository<Visit, Integer> {
 
 
     List<Visit> findVisitByDoctor_LastNameAndDateBetween(String lastName, LocalDateTime dateFrom, LocalDateTime dateTo);
-
 }

@@ -1,11 +1,9 @@
 package com.ClinicService.controller;
 
-import com.ClinicService.dto.patientdto.PatientDto;
+import com.ClinicService.dto.creatorVisits.CreatorVisitDto;
 import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
-import com.ClinicService.model.Visit;
 import com.ClinicService.service.PatientService;
-import com.ClinicService.service.UserService;
 import com.ClinicService.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,6 +36,7 @@ public class VisitController {
     public String createVisitPage(Model model) {
         model.addAttribute("visit", new VisitInfoDto());
         return "visitRegister";
+
     }
 
 //    @PostMapping("/patient/visit/create")
@@ -57,21 +56,11 @@ public class VisitController {
         return "visit";
     }
 
-
     @GetMapping("/patient/visit")
     public String visitPage() {
         return "visit";
     }
 
-//    @PostMapping("/patient/visit")
-//    public String visit(@Valid Visit visit, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "patient/visit";
-//        }
-//
-//        visitService.createVisit(visit);
-//        return "redirect:/login";
-//    }
 
     @GetMapping("/register/visit/{id}")
     public String editPage(@PathVariable(value = "id") int id, Principal principal){
@@ -85,7 +74,7 @@ public class VisitController {
     }
 
     @GetMapping("/visit/register")
-    public String registerPatientPage(Model model) {
+    public String registerVisitPage(Model model) {
         model.addAttribute("visit", new VisitFullDto());
         return "registerVisit";
     }
@@ -99,4 +88,20 @@ public class VisitController {
         visitService.saveVisit(visit);
         return "redirect:/login";
     }
+
+    @GetMapping ("/doctor/visit/create")
+    public String epmptyVisitPage(Model model){
+        model.addAttribute("creator",new CreatorVisitDto());
+        return "emptyVisit";
+    }
+
+    @PostMapping("/doctor/visit/create")
+    public String addEmptyVisits(@Valid CreatorVisitDto creator, Principal principal, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "emptyVisit";
+        }
+        visitService.createDataVisit(creator,principal.getName());
+        return "home";
+    }
+
 }

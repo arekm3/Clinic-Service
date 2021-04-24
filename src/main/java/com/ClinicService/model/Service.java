@@ -29,4 +29,6 @@ public class Service {
     private double time;
     @Column(name = "SER_DATE")
     private LocalDate date;
+
+
 }

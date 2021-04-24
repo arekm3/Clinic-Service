@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <title>RegistrationVisit</title>
+
+</head>
+<body>
+<div>
+    <form th:action="@{/doctor/visit/create}" th:object="${creator}" method="post">
+        <div><input type="text" th:field="*{numberOfVisits}"></div>
+        <div><input type="datetime-local" th:field ="*{startDate}"></div>
+        <div><button type="submit" >Submit</button></div>
+    </form>
+</div>
+
+</body>

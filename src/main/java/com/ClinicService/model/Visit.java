@@ -45,6 +45,7 @@ public class Visit {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime date;
 
+
 //    public static void main(String[] args) {
 //        List<LocalDateTime> lista = new ArrayList<>();
 //        LocalDateTime start = LocalDateTime.of(2021,4,21,16,30);

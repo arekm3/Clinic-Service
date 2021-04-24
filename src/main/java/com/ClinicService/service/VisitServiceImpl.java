@@ -1,12 +1,13 @@
 package com.ClinicService.service;
 
 
-import com.ClinicService.dto.doctordto.DoctorFullDto;
+import com.ClinicService.dto.creatorVisits.CreatorVisitDto;
 import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
 import com.ClinicService.model.Doctor;
 import com.ClinicService.model.Patient;
 import com.ClinicService.model.Visit;
+import com.ClinicService.repository.DoctorRepository;
 import com.ClinicService.repository.PatientRepository;
 import com.ClinicService.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,10 +25,25 @@ import java.util.stream.Collectors;
 public class VisitServiceImpl implements VisitService{
     private final VisitRepository visitRepository;
     private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public void createVisit(Visit visit) {
+    public void createDataVisit(CreatorVisitDto obiektDto, String name) {
+
+        Optional<Doctor> doctor = doctorRepository.findByUserUserName(name);
+        doctor.ifPresent(doctor1 -> {
+            List<Visit> list = new ArrayList<>();
+            for(long i = 0; i<obiektDto.getNumberOfVisits();i++){
+                Visit visit = new Visit();
+                visit.setDate(obiektDto.getStartDate().plusMinutes(30*i));
+                visit.setDoctor(doctor1);
+                list.add(visit);
+            }
+            visitRepository.saveAll(list);
+        });
+
+
     }
 
     @Override
@@ -56,8 +73,10 @@ public class VisitServiceImpl implements VisitService{
     @Override
     public void saveVisit(VisitFullDto visitFullDto) {
         Visit visit = toVisit(visitFullDto);
-        Visit saved = visitRepository.save(visit);
+        visitRepository.save(visit);
+
     }
+
     private Visit toVisit (VisitFullDto visitFullDto){
         return Visit.builder()
                 .date(visitFullDto.getDate())
@@ -65,6 +84,7 @@ public class VisitServiceImpl implements VisitService{
                 .patient(null)
                 .service(null).build();
     }
+
     private Doctor toDoctor(int id){
         return Doctor.builder()
                 .id(id).build();
