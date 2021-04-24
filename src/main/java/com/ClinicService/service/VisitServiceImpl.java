@@ -2,6 +2,8 @@ package com.ClinicService.service;
 
 
 import com.ClinicService.dto.creatorVisits.CreatorVisitDto;
+import com.ClinicService.dto.patientdto.PatientInfoDto;
+import com.ClinicService.dto.visitdto.VisitDisplayInfo;
 import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
 import com.ClinicService.model.Doctor;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,11 +46,14 @@ public class VisitServiceImpl implements VisitService{
             visitRepository.saveAll(list);
         });
 
-
     }
 
     @Override
-    public void displayVisitDetails(Visit visit) {
+    public List<VisitInfoDto> displayReservedVisit(LocalDate dateTime, String lastName) {
+        List<Visit> visitByDoctor_lastNameAndDateBetween = visitRepository.findVisitByDoctor_LastNameAndDateBetween(lastName, dateTime.atStartOfDay(), dateTime.plusDays(1).atStartOfDay());
+        return visitByDoctor_lastNameAndDateBetween.stream()
+                .map(visit -> modelMapper.map(visit, VisitInfoDto.class))
+                .collect(Collectors.toList());
     }
     @Override
     public List<VisitInfoDto> getAvailableVisit(LocalDate dateTime, String lastName) {
@@ -69,6 +75,28 @@ public class VisitServiceImpl implements VisitService{
             }
         });
     }
+    @Override
+    public VisitDisplayInfo displayVisit(int id) {
+        return visitRepository.findById(id).map(this::visitToDisplay).orElseThrow();
+    }
+    private VisitDisplayInfo visitToDisplay(Visit visit){
+        return VisitDisplayInfo.builder()
+                .patient(patientToInfo(visit.getPatient()))
+                .build();
+    }
+
+    private PatientInfoDto patientToInfo(Patient patient){
+        return PatientInfoDto.builder()
+                .name(patient.getName())
+                .lastName(patient.getLastName())
+                .address(patient.getAddress())
+                .email(patient.getEmail())
+                .gender(patient.getGender())
+                .phone(patient.getPhone())
+                .build();
+    }
+
+
 
     @Override
     public void saveVisit(VisitFullDto visitFullDto) {

@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <p>Lista wizyt</p>
+</head>
+<body>
+<tr th:object="${visit}">
+  <td th:text="${visit}"/><br>
+</tr>
+
+</body>
+</html>

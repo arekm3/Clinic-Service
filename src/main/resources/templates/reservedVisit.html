@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <p>Lista wizyt</p>
+</head>
+<body>
+<tr th:each="visit: ${visits}" th:object="${visit}">
+  <td th:text="${visit.getPatient()}"/><br>
+  <td th:text="${visit.getDate()}"/><br>
+  <td><a th:href="@{/doctor/visit/display/{id}(id=${visit.getId()})}">Display</a></td>
+</tr>
+
+<form>
+
+</form>
+
+</body>
+</html>
