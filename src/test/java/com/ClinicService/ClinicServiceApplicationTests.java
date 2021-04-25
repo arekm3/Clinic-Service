@@ -21,9 +21,13 @@ class ClinicServiceApplicationTests {
 	@Test
 	public void shouldFindVisitByDateAndDoctor_LastName() {
 		//given
-		List<Visit> visitList = visitRepository.findVisitByDoctor_LastNameAndDateBetween("Nowak",LocalDateTime.parse("2021-02-15T00:00:00"),LocalDateTime.parse("2021-02-16T00:00:00"));
-
+		List<Visit> visitList = visitRepository.findVisitByDoctor_LastNameAndDateBetween("Kaczmarczyk",LocalDateTime.parse("2021-02-15T00:00:00"),LocalDateTime.parse("2021-02-16T00:00:00"));
 		assertThat(visitList).hasSize(2);
+	}
+
+	@Test
+	public void shouldAddPatientToVisit(){
+
 	}
 
 }

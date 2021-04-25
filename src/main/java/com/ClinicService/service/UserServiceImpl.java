@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .name(doctorDto.getName())
                 .lastName(doctorDto.getLastName())
                 .specialization(doctorDto.getSpecialization())
-                .user(createUser(doctorDto.getUserName(), doctorDto.getPassword(), Set.of(roleRepository.findByName("admin"))))
+                .user(createUser(doctorDto.getUserName(), doctorDto.getPassword(), Set.of(roleRepository.findByName("doctor"))))
                 .build();
     }
 
