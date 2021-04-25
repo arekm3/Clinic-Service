@@ -92,6 +92,11 @@ public class VisitController {
         return "service";
     }
 
+    @GetMapping("/patient/doctor")
+    public String doctorPage() {
+        return "doctor";
+    }
+
     @GetMapping("/visit/register")
     public String registerVisitPage(Model model) {
         model.addAttribute("visit", new VisitFullDto());
