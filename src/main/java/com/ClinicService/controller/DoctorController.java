@@ -1,7 +1,6 @@
 package com.ClinicService.controller;
 
 import com.ClinicService.dto.doctordto.DoctorFullDto;
-import com.ClinicService.model.Doctor;
 import com.ClinicService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+
 
 @Controller
 public class DoctorController {

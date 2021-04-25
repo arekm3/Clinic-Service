@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 @Data
  public class VisitFullDto {
-
     private int doctorId;
     private LocalDateTime date;
     private PatientDto patient;

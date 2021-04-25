@@ -10,7 +10,7 @@ import com.ClinicService.repository.DoctorRepository;
 import com.ClinicService.repository.PatientRepository;
 import com.ClinicService.repository.RoleRepository;
 import com.ClinicService.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,26 +18,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
-
     private final DoctorRepository doctorRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final PatientRepository patientRepository;
-
-    @Autowired
-    public UserServiceImpl(DoctorRepository doctorRepository, PasswordEncoder passwordEncoder,
-                           RoleRepository roleRepository, UserRepository userRepository,
-                           PatientRepository patientRepository) {
-        this.doctorRepository = doctorRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.roleRepository = roleRepository;
-        this.userRepository = userRepository;
-        this.patientRepository = patientRepository;
-    }
 
     @Override
     public void saveDoctor(DoctorFullDto doctorDto) {
@@ -58,6 +46,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void getUserById(int id) {
         userRepository.getUserById(id);
+    }
+
+    @Override
+    public DoctorFullDto findByLoginDoctor(String userName) {
+        return null;
     }
 
     private Patient toPatient(PatientDto patientDto) {
@@ -89,8 +82,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepository.findByUserName(s).orElseThrow(() -> new UsernameNotFoundException("Couldn't find user by user name"));
     }
-
-//    public static void main(String[] args) {
-//        System.out.println(new BCryptPasswordEncoder().encode("test"));
-//    }
 }
