@@ -3,15 +3,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.GenerationType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
+
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -36,7 +29,7 @@ public class Patient {
     private String phone;
     @Column(name = "PAT_GENDER")
     private String gender;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PAT_USR_ID", referencedColumnName = "USR_ID")
     private User user;
 }
