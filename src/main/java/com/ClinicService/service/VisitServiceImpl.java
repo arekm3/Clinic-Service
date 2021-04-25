@@ -15,12 +15,10 @@ import com.ClinicService.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +43,6 @@ public class VisitServiceImpl implements VisitService{
             }
             visitRepository.saveAll(list);
         });
-
     }
 
     @Override
@@ -108,13 +105,10 @@ public class VisitServiceImpl implements VisitService{
                 .build();
     }
 
-
-
     @Override
     public void saveVisit(VisitFullDto visitFullDto) {
         Visit visit = toVisit(visitFullDto);
         visitRepository.save(visit);
-
     }
 
     private Visit toVisit (VisitFullDto visitFullDto){
@@ -129,6 +123,4 @@ public class VisitServiceImpl implements VisitService{
         return Doctor.builder()
                 .id(id).build();
     }
-
-
 }

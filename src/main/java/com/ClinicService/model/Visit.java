@@ -5,20 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.GenerationType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Builder
@@ -27,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "visit")
 public class Visit {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "VIS_ID")

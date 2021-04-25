@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 public class VisitInfoDto {
-
     private int id;
     private DoctorInfoDto doctor;
     private LocalDateTime date;

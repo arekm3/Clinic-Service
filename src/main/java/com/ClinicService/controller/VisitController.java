@@ -1,5 +1,4 @@
 package com.ClinicService.controller;
-
 import com.ClinicService.dto.creatorVisits.CreatorVisitDto;
 import com.ClinicService.dto.visitdto.VisitFullDto;
 import com.ClinicService.dto.visitdto.VisitInfoDto;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
@@ -24,12 +22,10 @@ import java.util.List;
 public class VisitController {
 
     private final VisitService visitService;
-    private final PatientService patientService;
 
     @Autowired
-    public VisitController(VisitService visitService, PatientService patientService) {
+    public VisitController(VisitService visitService) {
         this.visitService = visitService;
-        this.patientService = patientService;
     }
 
     @GetMapping("/patient/visit/create")
