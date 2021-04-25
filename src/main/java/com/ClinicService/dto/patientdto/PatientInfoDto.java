@@ -1,5 +1,4 @@
 package com.ClinicService.dto.patientdto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class PatientInfoDto {
-
     private String name;
     private String lastName;
     private String email;
