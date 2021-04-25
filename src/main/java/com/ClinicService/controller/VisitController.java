@@ -45,16 +45,6 @@ public class VisitController {
         return "visit";
     }
 
-    //    @PostMapping("/patient/visit/create")
-//    public String createVisit(@Valid Visit visit, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "patient/visit/create";
-//        }
-//
-//        visitService.createVisit(visit);
-//        return "redirect:/visit";
-//    }
-
     @GetMapping("/doctor/visit/display")
     public String findReservedVisits(Model model) {
         model.addAttribute("visit", new VisitInfoDto());
@@ -71,6 +61,12 @@ public class VisitController {
     public String displayVisit(@PathVariable(value = "id") int id, Model model) {
         model.addAttribute("visit",visitService.displayVisit(id));
         return "visitDetail";
+    }
+
+    @PostMapping("/doctor/visit/display/{id}")
+    public String addDescription(@PathVariable(value = "id") int id, String description){
+        visitService.updateDescription(id, description);
+        return "redirect:/doctor/visit/display/" + id;
     }
 
     @GetMapping("/patient/visit")

@@ -18,5 +18,6 @@ public interface VisitService {
     void addPatientToVisit(int id, String name);
     void saveVisit(VisitFullDto visitFullDto);
     VisitDisplayInfo displayVisit(int id);
+    void updateDescription(int id, String description);
 
 }

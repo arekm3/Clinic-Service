@@ -9,7 +9,7 @@
 <tr th:each="visit: ${visits}" th:object="${visit}">
   <td th:text="${visit.getPatient()}"/><br>
   <td th:text="${visit.getDate()}"/><br>
-  <td><a th:href="@{/doctor/visit/display/{id}(id=${visit.getId()})}">Display</a></td>
+  <td><a th:href="@{/doctor/visit/display/{id}(id=${visit.getId()})}">Display</a></td><br>
 </tr>
 
 <form>
