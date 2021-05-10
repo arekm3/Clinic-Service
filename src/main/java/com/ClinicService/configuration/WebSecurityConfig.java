@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/home",
                         "/patient/register").permitAll()
-                .antMatchers("/").hasAuthority("user")
+                .antMatchers("/patient/**").hasAuthority("patient")
                 .antMatchers("/doctor/**").hasAuthority("doctor")
                 .antMatchers("/admin/**").hasAuthority("admin")
                 .anyRequest().authenticated()
