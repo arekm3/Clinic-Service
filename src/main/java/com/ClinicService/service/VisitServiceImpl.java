@@ -1,6 +1,5 @@
 package com.ClinicService.service;
 
-
 import com.ClinicService.dto.creatorVisits.CreatorVisitDto;
 import com.ClinicService.dto.patientdto.PatientInfoDto;
 import com.ClinicService.dto.visitdto.VisitDisplayInfo;
@@ -15,6 +14,7 @@ import com.ClinicService.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
