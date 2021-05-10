@@ -19,6 +19,7 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+
     }
 
     @GetMapping("/home")
@@ -37,7 +38,7 @@ public class UserController {
         if (authentication.isAuthenticated()) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
-
         return "redirect:/home";
     }
+
 }

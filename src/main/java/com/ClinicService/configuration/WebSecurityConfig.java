@@ -1,5 +1,4 @@
 package com.ClinicService.configuration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,11 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**",
-                        "/home",
-                        "/patient/register",
-                        "/patient/visit/create").permitAll()
-                .antMatchers("/").hasAuthority("USER")
-                .antMatchers("/doctor/**").hasAuthority("ADMIN")
+                        "/home").permitAll()
+                .antMatchers("/patient/**").hasAuthority("patient")
+                .antMatchers("/doctor/**").hasAuthority("doctor")
+                .antMatchers("/admin/**").hasAuthority("admin")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -62,4 +60,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 }

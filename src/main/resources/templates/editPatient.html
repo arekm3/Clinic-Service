@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/patient/edit}" th:object="${patient}" method="post">
+        <div class="form-group">
+            <input class="form-control" readonly placeholder="Id" th:field="${patient.id}"/>
+            <br/>
+            <input class="form-control" readonly placeholder="Name" th:field="${patient.name}"/>
+            <br/>
+            <input class="form-control" readonly placeholder="LastName" th:field="${patient.lastName}"/>
+            <br/>
+            <input class="form-control" readonly placeholder="Gender" th:field="${patient.gender}"/>
+            <br/>
+            <input class="form-control" readonly placeholder="role" th:field="${patient.role}"/>
+            <br/>
+            <input class="form-control" readonly placeholder="userName" th:field="${patient.userName}"/>
+            <br/>
+            <input class="form-control" readonly placeholder="address" th:field="${patient.address}"/>
+            <br/>
+            <input class="form-control" placeholder="Phone" th:field="${patient.phone}"/>
+            <br/>
+            <input class="form-control" placeholder="Email" th:field="${patient.email}"/>
+            <br/>
+            <input class="form-control" placeholder="Password" th:field="${patient.password}"/>
+            <br/>
+            <input type="submit" class="btn btn-success" id="submitButton" th:value="Save">
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

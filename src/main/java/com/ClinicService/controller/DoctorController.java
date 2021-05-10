@@ -1,7 +1,6 @@
 package com.ClinicService.controller;
 
-import com.ClinicService.dto.DoctorDto;
-import com.ClinicService.model.Doctor;
+import com.ClinicService.dto.doctordto.DoctorFullDto;
 import com.ClinicService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+
 
 @Controller
 public class DoctorController {
@@ -22,16 +22,16 @@ public class DoctorController {
         this.userService = userService;
     }
 
-    @GetMapping("/doctor/register")
+    @GetMapping("/admin/doctor/register")
     public String registerDocPage(Model model) {
-        model.addAttribute("doctor", new Doctor());
-        return "doctor/register";
+        model.addAttribute("doctor", new DoctorFullDto());
+        return "registerDoctor";
     }
 
-    @PostMapping("/doctor/register")
-    public String registerDoc(@Valid DoctorDto doc, BindingResult result) {
+    @PostMapping("/admin/doctor/register")
+    public String registerDoc(@Valid DoctorFullDto doc, BindingResult result) {
         if (result.hasErrors()) {
-            return "doctor/register";
+            return "registerDoctor";
         } else {
             userService.saveDoctor(doc);
             return "redirect:/login";
